@@ -1,7 +1,9 @@
 import { Button, Checkbox, Chip, FormControlLabel } from "@mui/material";
-import "./taskViewCard.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import "./taskViewCard.css";
+import { changeStatus } from "../../reduxSlices/taskSlice";
 
 const textHeading = {
   fontSize: "19px",
@@ -11,9 +13,11 @@ const textHeading = {
 
 const textDescrition = { fontSize: "18px", lineHeight: "1.4" };
 
-export const TaskViewCard = () => {
-  const [checked, setChecked] = useState(false);
+export const TaskViewCard = ({ task }) => {
+  const [checked, setChecked] = useState(task.status === "Done");
+  const tasks = useSelector((state) => state.tasks.tasks);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleEdit = () => {
     navigate("/edit");
@@ -25,11 +29,17 @@ export const TaskViewCard = () => {
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
+    const payload = {
+      tasks: tasks,
+      currentTaskId: task?.id,
+      status: event.target.checked ? "Done" : "Pending",
+    };
+    dispatch(changeStatus(payload));
   };
   return (
     <div className="taskViewCard">
       <div className="taskViewHeader">
-        <h2>Title</h2>
+        <h2>{task.title}</h2>
         <Chip
           label={checked ? "Done" : "Pending"}
           color={checked ? "success" : "warning"}
@@ -38,42 +48,20 @@ export const TaskViewCard = () => {
       </div>
       <div className="taskViewDescrition">
         <p style={textHeading}>Description</p>
-        <p style={textDescrition}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias
-          obcaecati atque dolor earum dignissimos a reiciendis iure ea
-          laboriosam harum, temporibus nam vero fugit nostrum aperiam deserunt
-          nesciunt pariatur voluptas. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Reiciendis amet odio molestiae minus, quas, est
-          cumque aliquam perspiciatis ad deleniti aut laudantium, repellendus
-          quam! Eaque corrupti obcaecati distinctio tempora beatae? Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Alias obcaecati atque
-          dolor earum dignissimos a reiciendis iure ea laboriosam harum,
-          temporibus nam vero fugit nostrum aperiam deserunt nesciunt pariatur
-          voluptas. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Reiciendis amet odio molestiae minus, quas, est cumque aliquam
-          perspiciatis ad deleniti aut laudantium, repellendus quam! Eaque
-          corrupti obcaecati distinctio tempora beatae? Lorem ipsum dolor sit
-          amet consectetur adipisicing elit. Alias obcaecati atque dolor earum
-          dignissimos a reiciendis iure ea laboriosam harum, temporibus nam vero
-          fugit nostrum aperiam deserunt nesciunt pariatur voluptas. Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Reiciendis amet odio
-          molestiae minus, quas, est cumque aliquam perspiciatis ad deleniti aut
-          laudantium, repellendus quam! Eaque corrupti obcaecati distinctio
-          tempora beatae?
-        </p>
+        <p style={textDescrition}>{task?.description}</p>
       </div>
       <div className="taskViewDescrition">
         <p style={textHeading}>Due Date</p>
-        <p style={textDescrition}>24-12-2024</p>
+        <p style={textDescrition}>{task?.dueDate}</p>
       </div>
       <div className="taskViewControlBlock">
         <div className="taskViewBtnWrapper">
           <Button color="inherit" variant="contained" onClick={handleBack}>
             BACK
           </Button>
-          <Button color="error" variant="contained">
+          {/* <Button color="error" variant="contained">
             DELETE
-          </Button>
+          </Button> */}
         </div>
         <div className="taskViewBtnWrapper">
           <FormControlLabel
@@ -86,9 +74,9 @@ export const TaskViewCard = () => {
             }
             label="Mark as Done"
           />
-          <Button color="primary" variant="contained" onClick={handleEdit}>
+          {/* <Button color="primary" variant="contained" onClick={handleEdit}>
             EDIT
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>

@@ -21,11 +21,10 @@
   white-space: nowrap;
   overflow: hidden !important;
   text-overflow: ellipsis;
+  color: rgb(75 85 99);
 }
 
 .taskTitle {
-  text-decoration: none;
-  color: black;
-  font-size: 1.5em;
-  font-weight: bold;
+  color: rgb(31 41 55);
+  cursor: pointer;
 }

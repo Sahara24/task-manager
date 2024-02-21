@@ -1,6 +1,7 @@
 import App from "../App";
 import { GlobalProvider } from "../components";
-import { ManageTask, ViewTask } from "../pages";
+import { AddTask, ViewTask } from "../pages";
+import { EditTask } from "../pages/EditTask";
 
 export const Routes = [
   {
@@ -13,11 +14,11 @@ export const Routes = [
       },
       {
         path: "add",
-        element: <ManageTask />,
+        element: <AddTask />,
       },
       {
         path: "edit",
-        element: <ManageTask />,
+        element: <EditTask />,
       },
       {
         path: "view",

@@ -1,4 +1,4 @@
-import { ManageTask } from "./ManageTask";
+import { AddTask } from "./AddTask";
 import { ViewTask } from "./ViewTask";
 
-export { ManageTask, ViewTask };
+export { AddTask, ViewTask };

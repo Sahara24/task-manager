@@ -1,21 +1,47 @@
 import React, { useState } from "react";
-import "./taskCard.css";
 import { Button, Checkbox, Chip, FormControlLabel } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import "./taskCard.css";
+import { changeStatus, deleteTask } from "../../reduxSlices/taskSlice";
 
 export const TaskCard = ({ task }) => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(task.status === "Done");
+  const tasks = useSelector((state) => state.tasks.tasks);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    const payload = {
+      tasks: tasks,
+      currentTaskId: task.id,
+    };
+    dispatch(deleteTask(payload));
+  };
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
+    const payload = {
+      tasks: tasks,
+      currentTaskId: task?.id,
+      status: event.target.checked ? "Done" : "Pending",
+    };
+    dispatch(changeStatus(payload));
+  };
+
+  const handleEdit = () => {
+    navigate("/edit", { state: { task_id: task.id } });
+  };
+
+  const handleClick = () => {
+    navigate("/view", { state: { task_id: task?.id } });
   };
   return (
     <div className="taskCard">
       <div className="header">
-        <Link to="/view" className="taskTitle">
+        <h2 onClick={handleClick} className="taskTitle">
           {task?.title}
-        </Link>
+        </h2>
         <div className="taskControlbar">
           <FormControlLabel
             control={
@@ -28,6 +54,7 @@ export const TaskCard = ({ task }) => {
             label="Mark as Done"
           />
           <Button
+            onClick={handleDelete}
             style={{ marginLeft: "16px" }}
             variant="outlined"
             color="error"
@@ -36,6 +63,7 @@ export const TaskCard = ({ task }) => {
             Delete
           </Button>
           <Button
+            onClick={handleEdit}
             style={{ marginLeft: "16px" }}
             variant="outlined"
             color="info"
@@ -45,12 +73,7 @@ export const TaskCard = ({ task }) => {
           </Button>
         </div>
       </div>
-      <p className="taskDescrition">
-        <span style={{ fontSize: "16px" }}>
-          <strong>Description: </strong>
-        </span>
-        {task?.description}
-      </p>
+      <p className="taskDescrition">{task?.description}</p>
       <p className="dueDateDisplay">
         <span style={{ fontSize: "16px" }}>
           <strong>Due Date: </strong>

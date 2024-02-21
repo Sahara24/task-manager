@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 function App() {
   const tasks = useSelector((state) => state.tasks.tasks);
-  console.log(tasks);
   return (
     <div className="app">
       <div className="header">
@@ -17,7 +16,7 @@ function App() {
 
       <div className="tasksWrapper">
         {tasks?.map((task) => (
-          <TaskCard task={task} />
+          <TaskCard task={task} key={task.id} />
         ))}
       </div>
     </div>

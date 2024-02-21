@@ -37,24 +37,6 @@ body {
   font-weight: 500;
 }
 
-.formWrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 24px;
-}
-
-.addForm {
-  min-width: 40%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  font-size: 18px;
-  background-color: whitesmoke;
-  padding: 32px;
-  border-radius: 4px;
-}
-
 .tasksWrapper {
   display: flex;
   flex-direction: column;
