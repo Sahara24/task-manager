@@ -11,4 +11,4 @@ Currently, two official plugins are available:
 
 1. Clone the project to local.
 2. Run "npm i" or "npm install" to install the dependencies
-3. Run npm run dev, then the port will be displayed in terminal, click on that.
+3. Run "npm run dev", then the port will be displayed in terminal, click on that.
