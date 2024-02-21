@@ -1,0 +1,31 @@
+.taskCard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  background-color: white;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.taskCard .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.taskDescrition {
+  height: 20px;
+  /* overflow: hidden; */
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.taskTitle {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5em;
+  font-weight: bold;
+}

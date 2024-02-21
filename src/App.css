@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  font-family: sans-serif;
+  margin: 0;
+}
+
+body {
+  background-color: rgb(53, 53, 60);
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
+}
+
+.app h1 {
+  color: whitesmoke;
+}
+
+.app .header {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.addTaskBtn {
+  text-decoration: none;
+  padding: 12px;
+  background-color: white;
+  color: black;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.formWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+
+.addForm {
+  min-width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 18px;
+  background-color: whitesmoke;
+  padding: 32px;
+  border-radius: 4px;
+}
+
+.tasksWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 60%;
+}
