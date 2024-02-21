@@ -18,14 +18,9 @@ export const counterSlice = createSlice({
         status: "Pending",
         id: randomNumGenerator(),
       };
-      state.tasks.push(payload);
+      state.tasks.push(customPayload);
     },
-    decrement: (state) => {
-      state.value -= 1;
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
-    },
+    updateTask: (state, { payload }) => {},
   },
 });
 

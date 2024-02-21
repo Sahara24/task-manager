@@ -14,14 +14,12 @@ export const counterSlice = createSlice({
   name: "tasks",
   initialState,
   reducers: {
-    addTask: (state, { payload }) => {
-      state.tasks.push(payload);
-    },
-    decrement: (state) => {
-      state.value -= 1;
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
+    setTask: (state, { payload }) => {
+      state.task.title = payload.title;
+      state.task.description = payload.description;
+      state.task.dueDate = payload.dueDate;
+      state.task.id = payload.id;
+      state.task.status = payload.status;
     },
   },
 });
