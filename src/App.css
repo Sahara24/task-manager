@@ -43,3 +43,34 @@ body {
   gap: 16px;
   width: 60%;
 }
+
+.noTaskTxt {
+  color: white;
+  font-weight: 500;
+  font-size: 24px;
+  text-align: center;
+}
+
+.taskListText {
+  color: white;
+  font-weight: 500;
+  font-weight: 24px;
+}
+
+.taskFilterWrapper {
+  display: flex;
+  border-radius: 4px;
+  align-items: center;
+  padding: 0 6px;
+}
+
+.noDataFallback {
+  width: 100%;
+  border: 1px solid white;
+  height: 150px;
+  text-align: center;
+  font-size: 24px;
+  padding: 40px 0;
+  color: white;
+  border-radius: 8px;
+}

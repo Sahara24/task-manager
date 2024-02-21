@@ -3,11 +3,16 @@ import { Button, Checkbox, Chip, FormControlLabel } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./taskCard.css";
-import { changeStatus, deleteTask } from "../../reduxSlices/taskSlice";
+import {
+  changeStatus,
+  deleteTask,
+  selectTasks,
+} from "../../reduxSlices/taskSlice";
+import toast from "react-hot-toast";
 
 export const TaskCard = ({ task }) => {
   const [checked, setChecked] = useState(task.status === "Done");
-  const tasks = useSelector((state) => state.tasks.tasks);
+  const tasks = useSelector(selectTasks);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -17,6 +22,7 @@ export const TaskCard = ({ task }) => {
       currentTaskId: task.id,
     };
     dispatch(deleteTask(payload));
+    toast.success("Task deleted");
   };
 
   const handleChange = (event) => {
@@ -36,42 +42,47 @@ export const TaskCard = ({ task }) => {
   const handleClick = () => {
     navigate("/view", { state: { task_id: task?.id } });
   };
+
+  const controlButtons = (
+    <>
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={checked}
+            onChange={handleChange}
+            inputProps={{ "aria-label": "controlled" }}
+          />
+        }
+        label="Mark as Done"
+      />
+      <Button
+        onClick={handleDelete}
+        variant="outlined"
+        color="error"
+        size="small"
+        sx={{ height: "32px" }}
+      >
+        Delete
+      </Button>
+      <Button
+        onClick={handleEdit}
+        variant="outlined"
+        color="info"
+        size="small"
+        sx={{ height: "32px" }}
+      >
+        EDIT
+      </Button>
+    </>
+  );
+
   return (
     <div className="taskCard">
-      <div className="header">
+      <div className="taskHeader">
         <h2 onClick={handleClick} className="taskTitle">
           {task?.title}
         </h2>
-        <div className="taskControlbar">
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={checked}
-                onChange={handleChange}
-                inputProps={{ "aria-label": "controlled" }}
-              />
-            }
-            label="Mark as Done"
-          />
-          <Button
-            onClick={handleDelete}
-            style={{ marginLeft: "16px" }}
-            variant="outlined"
-            color="error"
-            size="small"
-          >
-            Delete
-          </Button>
-          <Button
-            onClick={handleEdit}
-            style={{ marginLeft: "16px" }}
-            variant="outlined"
-            color="info"
-            size="small"
-          >
-            EDIT
-          </Button>
-        </div>
+        <div className="taskControlbar">{controlButtons}</div>
       </div>
       <p className="taskDescrition">{task?.description}</p>
       <p className="dueDateDisplay">
@@ -87,6 +98,7 @@ export const TaskCard = ({ task }) => {
           variant="filled"
         />
       </div>
+      <div className="mobileControlbar">{controlButtons}</div>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   tasks: [],
+  filteredTasks: [],
 };
 
 function randomNumGenerator() {
@@ -33,7 +34,6 @@ export const tasksSlice = createSlice({
       const modifiedTasks = payload?.tasks?.filter(
         (item) => item.id !== payload?.currentTaskId
       );
-      console.log({ modifiedTasks });
       state.tasks = modifiedTasks;
     },
     changeStatus: (state, { payload }) => {
@@ -49,11 +49,20 @@ export const tasksSlice = createSlice({
 
       state.tasks = modifiedTasks;
     },
+    filterTasks: (state, { payload }) => {
+      const modifiedTasks = payload.tasks.filter(
+        (task) => task.status?.toLowerCase() === payload.status?.toLowerCase()
+      );
+      state.filteredTasks = modifiedTasks;
+    },
   },
 });
 
+export const selectTasks = (state) => state.tasks.tasks;
+export const selectFilteredTasks = (state) => state.tasks.filteredTasks;
+
 // Action creators are generated for each case reducer function
-export const { addTask, changeStatus, updateTask, deleteTask } =
+export const { addTask, changeStatus, updateTask, deleteTask, filterTasks } =
   tasksSlice.actions;
 
 export default tasksSlice.reducer;

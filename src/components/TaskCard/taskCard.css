@@ -8,7 +8,7 @@
   width: 100%;
 }
 
-.taskCard .header {
+.taskCard .taskHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,4 +27,26 @@
 .taskTitle {
   color: rgb(31 41 55);
   cursor: pointer;
+}
+
+.taskControlbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.mobileControlbar {
+  display: none;
+}
+
+@media only screen and (max-width: 767px) {
+  /* Styles for mobile devices */
+  /* You can add your CSS rules here */
+  .taskControlbar {
+    display: none;
+  }
+  .mobileControlbar {
+    display: flex;
+    gap: 2px;
+  }
 }

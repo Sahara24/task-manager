@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./taskViewCard.css";
-import { changeStatus } from "../../reduxSlices/taskSlice";
+import { changeStatus, selectTasks } from "../../reduxSlices/taskSlice";
 
 const textHeading = {
   fontSize: "19px",
@@ -15,7 +15,7 @@ const textDescrition = { fontSize: "18px", lineHeight: "1.4" };
 
 export const TaskViewCard = ({ task }) => {
   const [checked, setChecked] = useState(task.status === "Done");
-  const tasks = useSelector((state) => state.tasks.tasks);
+  const tasks = useSelector(selectTasks);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

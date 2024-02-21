@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { TaskForm } from "../components";
 import { updateTask } from "../reduxSlices/taskSlice";
+import toast from "react-hot-toast";
 
 export const EditTask = () => {
   const location = useLocation();
@@ -17,6 +18,7 @@ export const EditTask = () => {
       updatedTask: data,
     };
     dispatch(updateTask(payload));
+    toast.success("Task update successful");
   };
   const defaultValues = currentTask?.[0];
 

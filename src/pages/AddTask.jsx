@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { addTask } from "../reduxSlices/taskSlice";
-import { TaskForm, Toaster } from "../components";
-import Snackbar from "@mui/material/Snackbar";
+import { TaskForm } from "../components";
+import toast from "react-hot-toast";
 
 const defaultValues = {
   title: "",
@@ -12,18 +12,15 @@ const defaultValues = {
 };
 
 export const AddTask = () => {
-  const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const handleSubmit = (data) => {
     dispatch(addTask(data));
-    setOpen(true);
+    toast.success("Task Added successfully");
   };
 
   return (
     <div>
       <TaskForm submitFun={handleSubmit} defaultValues={defaultValues} />
-      <Snackbar open={open} autoHideDuration={6000} message="Note archived" />
-      <Toaster msg="Task Added Successfully" severity="success" open={open} />
     </div>
   );
 };
