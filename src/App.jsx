@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { TaskCard } from "./components";
+import { Fallback, TaskCard } from "./components";
 import { useDispatch, useSelector } from "react-redux";
 import {
   filterTasks,
@@ -40,11 +40,7 @@ function App() {
   return (
     <div className="app">
       <div className="header">
-        {tasks.length ? (
-          <h1 className="taskListText">Tasks List</h1>
-        ) : (
-          <h4 className="noTaskTxt">No Tasks available</h4>
-        )}
+        <h1 className="taskListText">Tasks List</h1>
         <div className="taskFilterWrapper">
           <FormControl
             sx={{ m: 1, minWidth: 120, borderColor: "white" }}
@@ -83,12 +79,12 @@ function App() {
           filteredTasks?.length ? (
             filteredTasks?.map((task) => <TaskCard task={task} key={task.id} />)
           ) : (
-            <div className="noDataFallback">No data found</div>
+            <Fallback />
           )
         ) : tasks?.length ? (
           tasks?.map((task) => <TaskCard task={task} key={task.id} />)
         ) : (
-          <div className="noDataFallback">No data found</div>
+          <Fallback />
         )}
       </div>
     </div>

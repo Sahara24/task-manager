@@ -25,6 +25,7 @@ body {
   width: 60%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .addTaskBtn {
@@ -54,7 +55,7 @@ body {
 .taskListText {
   color: white;
   font-weight: 500;
-  font-weight: 24px;
+  font-weight: 18px;
 }
 
 .taskFilterWrapper {
@@ -67,10 +68,26 @@ body {
 .noDataFallback {
   width: 100%;
   border: 1px solid white;
-  height: 150px;
+  height: 40vh;
+  min-height: 300px;
   text-align: center;
   font-size: 24px;
-  padding: 40px 0;
-  color: white;
   border-radius: 8px;
+  background-color: white;
+}
+
+@media only screen and (max-width: 767px) {
+  /* Styles for mobile devices */
+  /* You can add your CSS rules here */
+  .app {
+    padding: 10px;
+  }
+  .app .header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .tasksWrapper {
+    width: 100%;
+  }
 }
