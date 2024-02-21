@@ -17,10 +17,6 @@ body {
   padding: 24px;
 }
 
-.app h1 {
-  color: whitesmoke;
-}
-
 .app .header {
   width: 60%;
   display: flex;
@@ -55,7 +51,7 @@ body {
 .taskListText {
   color: white;
   font-weight: 500;
-  font-weight: 18px;
+  font-weight: 1.13rem;
 }
 
 .taskFilterWrapper {
@@ -78,7 +74,6 @@ body {
 
 @media only screen and (max-width: 767px) {
   /* Styles for mobile devices */
-  /* You can add your CSS rules here */
   .app {
     padding: 10px;
   }

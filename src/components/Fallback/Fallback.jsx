@@ -5,7 +5,7 @@ export const Fallback = () => {
   return (
     <div className="noDataFallback">
       <img alt="No Data found" src="/nodata.jpg" width="300px" height="80%" />
-      <p>
+      <p style={{ fontSize: "1rem" }}>
         Please <Link to="/add">Add Task</Link> to get started
       </p>
     </div>
