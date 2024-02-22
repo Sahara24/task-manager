@@ -79,9 +79,6 @@ export const TaskForm = ({ submitFun, defaultValues }) => {
           name="dueDate"
         />
 
-        {/* errors will return when field validation fails  */}
-        {errors.exampleRequired && <span>This field is required</span>}
-
         <div className="formBtnWrapper">
           <Button color="inherit" variant="contained" onClick={handleBack}>
             BACK
